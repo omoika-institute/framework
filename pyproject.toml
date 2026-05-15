@@ -1,0 +1,160 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "osintbuddy"
+authors = [
+    {name = "jerlendds", email = "jerlendds@osintbuddy.com"},
+]
+description = "The OSINTBuddy plugins framework for graph-based information analysis and offline local-first investigative workflows."
+readme = "README.md"
+license = {text = "MIT"}
+classifiers = [
+    "Framework :: AsyncIO",
+    "Environment :: Console",
+    "Natural Language :: English",
+    "Topic :: Software Development",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Scientific/Engineering :: Information Analysis", 
+    "Topic :: Security",
+    "Topic :: System :: Archiving", 
+    "Topic :: System :: Networking :: Monitoring", 
+    "Topic :: Utilities"
+]
+keywords = ["osint", "open source intelligence", "transform-pipeline", "intelligence", "plugins", "graph", "crawl", "crawling", "web", "scraping", "security", "reconnaissance","enrichment", "entity", "analysis", "investigation", "threat", "attribution", "cti", "threat-hunting", "recon", "attack-surface", "entity-resolution", "knowledge-graph", "plugin-framework", "extensible", "python-plugins", "investigative-journalism", "research-tools", "digital-investigations",  "provenance", "compliance", "local-first", "offline", "browser-automation", "maltego"]
+requires-python = ">=3.13"
+dynamic = ["version"]
+
+dependencies = [
+    "pydantic>=2.12.5",
+    "packaging>=21.0",
+    "httpx[http2]>=0.28.1",
+    "beautifulsoup4>=4.14.3",
+    "rich>=14.2.0",
+    "dulwich>=1.1.0",
+]
+
+[project.optional-dependencies]
+ # Development dependencies
+dev = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.14.11",
+    "mypy>=1.19.0",
+    "black>=25.12.0",
+    "pytest-cov>=7.0.0",
+]
+#  Browser automation, used by some default OSINTBuddy plugins
+all = [
+    "selenium>=4.39.0",
+    "playwright>=1.57.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "ruff>=0.14.11",
+    "mypy>=1.19.0",
+    "black>=25.12.0",
+    "pytest-cov>=7.0.0",
+    "selenium>=4.39.0",
+    "playwright>=1.57.0",
+    "pydantic>=2.12.5",
+    "packaging>=21.0",
+    "httpx[http2]>=0.28.1",
+    "beautifulsoup4>=4.14.3",
+    "rich>=14.2.0",
+    "dulwich>=1.1.0",
+    "pyinstaller>=6.19.0",
+]
+
+[project.urls]
+Homepage = "https://osintbuddy.com"
+Documentation = "https://docs.osintbuddy.com/"
+Repository = "https://github.com/osintbuddy/osintbuddy"
+Source = "https://github.com/osintbuddy/plugins"
+Tracker = "https://github.com/osintbuddy/osintbuddy/issues"
+Changelog = "https://github.com/osintbuddy/plugins/releases"
+
+[project.scripts]
+ob = "osintbuddy.ob:main"
+
+[tool.flit.module]
+name = "osintbuddy"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4"]
+ignore = ["E501", "B008"]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v"
+pythonpath = ["src"]
+markers = [
+    "integration: marks as integration test",
+    "slow: marks tests as slow",
+    "unit: fast offline tests",
+]
+
+[tool.black]
+line-length = 120
+target-version = ['py311', 'py312']
+
+[tool.coverage.run]
+branch = true
+source = ["src/osintbuddy"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
+
+[tool.bandit]
+exclude_dirs = ["build", "dist", "tests", "scripts"]
+number = 4
+recursive = true
+targets = "src"
+
+[tool.pyright]
+include = ["src"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+]
+pythonVersion = "3.13"
+pythonPlatform = "Linux"
+typeCheckingMode = "basic"
+reportMissingImports = true
+reportMissingTypeStubs = false
+
+[tool.hatch.build.targets.sdist.force-include]
+"bin/ob.py" = "osintbuddy/ob.py"
+
+[tool.hatch.build.targets.wheel.force-include]
+"bin/ob.py" = "osintbuddy/ob.py"
+
