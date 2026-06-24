@@ -499,9 +499,9 @@ from omoika import emit_result
 
 emit_result({"entities": [...], "edges": [...]})
 # Outputs:
-# ---OSIB_JSON_START---
+# ---OMOIKA_JSON_START---
 # {"entities": [...]}
-# ---OSIB_JSON_END---
+# ---OMOIKA_JSON_END---
 ```
 
 ### emit_error

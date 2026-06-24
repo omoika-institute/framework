@@ -10,7 +10,7 @@ Example JSON input:
         "color": "#22C55E99",
         "icon": "shield-checkered",
         "description": "An example entity",
-        "authors": ["OSIB", "Community"],
+        "authors": ["OMOIKA", "Community"],
         "elements": [
             [
                 {"type": "text", "label": "Name", "icon": "user", "width": 6},
@@ -33,7 +33,7 @@ Example output:
         description = "An example entity"
         elements = [...]
 
-        author = ["OSIB", "Community"]
+        author = ["OMOIKA", "Community"]
 """
 from __future__ import annotations
 

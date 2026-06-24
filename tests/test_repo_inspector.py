@@ -34,7 +34,7 @@ requires-python = ">=3.12"
 keywords = ["osint", "plugins", "recon", "web"]
 
 [[project.authors]]
-name = "OSIB"
+name = "OMOIKA"
 
 [project.urls]
 Homepage = "https://github.com/omoika/plugins"
@@ -56,7 +56,7 @@ class Website(Plugin):
     label = "Website"
     category = "Web"
     description = "Represents a domain from a website on the internet"
-    author = "OSIB"
+    author = "OMOIKA"
     color = "#1D1DB899"
     icon = "world-www"
     elements = [
@@ -184,7 +184,7 @@ def test_build_readme_projects_manifest_metadata(tmp_path, monkeypatch):
     snapshot = inspect_repo(plugins_path=str(repo_root), include_hashes=True)
     readme = build_readme(snapshot)
 
-    assert "# OSIB: Title here..." in readme
+    assert "# OMOIKA: Title here..." in readme
     assert "## Available Entities" in readme
     assert "| Website | website@1.0.0 | Web | Represents a domain from a website on the internet | entities/website.py |" in readme
     assert "## Available Transforms" in readme
@@ -320,7 +320,7 @@ def test_scaffold_default_repo_files_creates_examples_without_overwriting(tmp_pa
     assert 'author = "git-user"' in generic_search
     assert 'version = "1"' in generic_search
     assert 'read_resource_json(__file__, "example_data.json", default=[])' in generic_search
-    assert 'author = "OSIB"' in generic_result
+    assert 'author = "OMOIKA"' in generic_result
     assert '"value": "3"' in example_data
     assert 'target="generic_search@>=1"' in generic_transform
 

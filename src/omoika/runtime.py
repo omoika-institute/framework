@@ -138,7 +138,7 @@ def ensure_playwright_browsers(package_names: Sequence[str]) -> None:
         )
     )
     browser_root.mkdir(parents=True, exist_ok=True)
-    marker = browser_root / ".osib-browser-install"
+    marker = browser_root / ".omoika-browser-install"
     if marker.exists():
         return
 

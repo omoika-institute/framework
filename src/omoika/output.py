@@ -6,17 +6,17 @@ making it easier for the Electron app to parse results reliably.
 Output Format:
     Results are wrapped with delimiters for reliable parsing:
 
-    ---OSIB_JSON_START---
+    ---OMOIKA_JSON_START---
     {"entities": [...], "messages": [...]}
-    ---OSIB_JSON_END---
+    ---OMOIKA_JSON_END---
 
     Progress updates:
-    ---OSIB_PROGRESS---{"message": "Scanning...", "percent": 50}
+    ---OMOIKA_PROGRESS---{"message": "Scanning...", "percent": 50}
 
     Errors:
-    ---OSIB_ERROR_START---
+    ---OMOIKA_ERROR_START---
     {"error": "message", "code": "ERROR_CODE"}
-    ---OSIB_ERROR_END---
+    ---OMOIKA_ERROR_END---
 """
 from __future__ import annotations
 
@@ -27,11 +27,11 @@ from typing import Any, Callable
 
 
 # Output delimiters
-JSON_START = "---OSIB_JSON_START---"
-JSON_END = "---OSIB_JSON_END---"
-ERROR_START = "---OSIB_ERROR_START---"
-ERROR_END = "---OSIB_ERROR_END---"
-PROGRESS_PREFIX = "---OSIB_PROGRESS---"
+JSON_START = "---OMOIKA_JSON_START---"
+JSON_END = "---OMOIKA_JSON_END---"
+ERROR_START = "---OMOIKA_ERROR_START---"
+ERROR_END = "---OMOIKA_ERROR_END---"
+PROGRESS_PREFIX = "---OMOIKA_PROGRESS---"
 
 _progress_callback: Callable[[dict[str, Any]], None] | None = None
 

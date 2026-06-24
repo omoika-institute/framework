@@ -11,7 +11,7 @@ from rich.console import Console
 from omoika.cli.console import err_console
 
 
-class OSIBLogHandler(RichHandler):
+class OMOIKALogHandler(RichHandler):
     """Custom Rich log handler with Omoika styling."""
 
     def __init__(
@@ -54,7 +54,7 @@ def setup_logging(
         root.removeHandler(handler)
 
     # Configure Rich handler
-    handler = OSIBLogHandler(
+    handler = OMOIKALogHandler(
         show_path=show_path,
         show_time=show_time,
     )

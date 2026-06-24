@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.theme import Theme
 
 # Custom theme for Omoika
-OSIB_THEME = Theme({
+OMOIKA_THEME = Theme({
     "info": "cyan",
     "warning": "yellow",
     "error": "bold red",
@@ -27,7 +27,7 @@ OSIB_THEME = Theme({
 })
 
 # Main console for stdout
-console = Console(theme=OSIB_THEME, highlight=True)
+console = Console(theme=OMOIKA_THEME, highlight=True)
 
 # Error console for stderr
-err_console = Console(theme=OSIB_THEME, stderr=True, highlight=True)
+err_console = Console(theme=OMOIKA_THEME, stderr=True, highlight=True)

@@ -321,7 +321,7 @@ class SocialProfile(Plugin):
     version = "1.0.0"
     label = "Social Profile"
     description = "A social media account or profile"
-    author = ["OSIB Team", "Contributors"]
+    author = ["OMOIKA Team", "Contributors"]
     icon = "brand-twitter"
     color = "#1DA1F2"
     category = "Social Media"

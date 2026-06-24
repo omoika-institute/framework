@@ -77,7 +77,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="osib-worker",
+    name="omoika-worker",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -92,5 +92,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=False,
-    name="osib-runtime",
+    name="omoika-runtime",
 )

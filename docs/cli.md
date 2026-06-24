@@ -114,23 +114,23 @@ When using `--structured`, output is wrapped with delimiters:
 **Success:**
 
 ```
----OSIB_JSON_START---
+---OMOIKA_JSON_START---
 {"entities": [...], "edges": [...]}
----OSIB_JSON_END---
+---OMOIKA_JSON_END---
 ```
 
 **Error:**
 
 ```
----OSIB_ERROR_START---
+---OMOIKA_ERROR_START---
 {"code": "TRANSFORM_FAILED", "message": "...", "details": {...}}
----OSIB_ERROR_END---
+---OMOIKA_ERROR_END---
 ```
 
 **Progress:**
 
 ```
----OSIB_PROGRESS---{"message": "Processing...", "percent": 50}
+---OMOIKA_PROGRESS---{"message": "Processing...", "percent": 50}
 ```
 
 ---
@@ -502,15 +502,15 @@ ob transform -P my-plugins '{"label": "email", "version": "1.0.0", "transform": 
 
 RESULT=$(ob transform "$1" --structured 2>&1)
 
-if echo "$RESULT" | grep -q "OSIB_ERROR"; then
+if echo "$RESULT" | grep -q "OMOIKA_ERROR"; then
     # Handle error
-    ERROR=$(echo "$RESULT" | sed -n '/OSIB_ERROR_START/,/OSIB_ERROR_END/p')
+    ERROR=$(echo "$RESULT" | sed -n '/OMOIKA_ERROR_START/,/OMOIKA_ERROR_END/p')
     echo "Transform failed: $ERROR"
     exit 1
 fi
 
 # Extract JSON result
-JSON=$(echo "$RESULT" | sed -n '/OSIB_JSON_START/,/OSIB_JSON_END/p' | sed '1d;$d')
+JSON=$(echo "$RESULT" | sed -n '/OMOIKA_JSON_START/,/OMOIKA_JSON_END/p' | sed '1d;$d')
 echo "$JSON" | jq .
 ```
 

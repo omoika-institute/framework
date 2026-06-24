@@ -49,7 +49,7 @@ from omoika.repo_inspector import (
     write_manifest,
     write_readme,
 )
-from omoika.cli.console import console, err_console, OSIB_THEME
+from omoika.cli.console import console, err_console, OMOIKA_THEME
 from omoika.cli.display import (
     print_banner,
     print_error,
