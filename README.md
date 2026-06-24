@@ -1,4 +1,4 @@
-## Introducing Omoika: Reloaded
+## Introducing OMOIKA
 
 <p>
   <a href="https://github.com/omoika/omoika">
@@ -10,7 +10,7 @@
 
 ---
 
-# The Omoika Plugins Framework
+# The OMOIKA Plugins Framework
 
 [![PyPI version](https://badge.fury.io/py/omoika.svg)](https://pypi.org/project/omoika/)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
@@ -20,7 +20,7 @@ The plugin framework for [Omoika](https://github.com/omoika/omoika), a graph-bas
 
 ## Overview
 
-Omoika's plugin system enables you to define **entities** (_nodes in the graph_) and **transforms** (_operations that create new entities from existing ones_). The framework provides:
+OMOIKA's plugin system enables you to define **entities** (_nodes in the graph_) and **transforms** (_operations that create new entities from existing ones_). The framework provides:
 
 - **Entity definitions** with rich metadata, icons, colors, and form elements
 - **Transform decorators** with dependency management and version targeting
@@ -38,8 +38,8 @@ pip install omoika[all]
 For development:
 
 ```bash
-git clone https://github.com/omoika/plugins.git
-cd plugins/
+git clone https://github.com/omoika-institute/framework.git
+cd framework/
 pip install -e ".[dev]"
 ```
 
