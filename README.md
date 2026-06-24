@@ -13,10 +13,10 @@
 # The OMOIKA Plugins Framework
 
 [![PyPI version](https://badge.fury.io/py/omoika.svg)](https://pypi.org/project/omoika/)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The plugin framework for [Omoika](https://github.com/omoika/omoika), a graph-based OSINT platform for recon, OSINT investigations, link analysis, and more. Offline. Local-first workflows. No cloud dependency.
+The plugin framework for [OMOIKA](https://github.com/omoika-institute/omoika), a graph-based OSINT platform for recon, OSINT investigations, link analysis, and more. Offline. Local-first workflows. No cloud dependency.
 
 ## Overview
 
@@ -198,7 +198,6 @@ MIT License, see [LICENSE](LICENSE) for details.
 
 ## Links
 
-<!-- - [Documentation](https://docs.omoika.space/) -->
-
-- [Omoika Application](https://github.com/omoika/omoika)
-- [Issue Tracker](https://github.com/omoika/omoika/issues)
+- [Documentation](https://omoika.institute/)
+- [OMOIKA Application](https://github.com/omoika-institute/omoika)
+- [Issue Tracker](https://github.com/omoika-institute/omoika/issues)
