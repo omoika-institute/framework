@@ -2,7 +2,7 @@
 
 <p>
   <a href="https://github.com/omoika/omoika">
-    <img src="./watermark.svg" height="130px" alt="Logo">
+    <img src="./watermark.svg" height="360px" alt="Logo">
   </a>
 
 > _I have no data yet. It is a capital mistake to theorize before one has data. Insensibly
