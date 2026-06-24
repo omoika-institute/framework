@@ -1,4 +1,4 @@
-## Introducing OMOIKA
+## Introducing the OMOIKA `framework`
 
 <p>
   <a href="https://github.com/omoika/omoika">
