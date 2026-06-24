@@ -1,7 +1,7 @@
 #   -------------------------------------------------------------
 #   Licensed under the MIT License. See LICENSE in project root for information.
 #   -------------------------------------------------------------
-"""OSINTBuddy - Open Source Intelligence Plugin Framework
+"""Omoika - Open Source Intelligence Plugin Framework
 
 This package provides the core infrastructure for building OSINT plugins:
 - Entity definitions with rich metadata and field types
@@ -11,9 +11,9 @@ This package provides the core infrastructure for building OSINT plugins:
 - Structured CLI output for reliable parsing
 
 Example usage:
-    from osintbuddy import Plugin, transform, Entity, Edge, File
-    from osintbuddy.elements import TextInput
-    from osintbuddy.types import FieldType
+    from omoika import Plugin, transform, Entity, Edge, File
+    from omoika.elements import TextInput
+    from omoika.types import FieldType
 
     class EmailEntity(Plugin):
         version = "1.0.0"
@@ -37,7 +37,7 @@ Example usage:
 from __future__ import annotations
 
 # Core plugin infrastructure
-from osintbuddy.plugins import (
+from omoika.plugins import (
     Registry,
     Plugin,
     transform,
@@ -46,7 +46,7 @@ from osintbuddy.plugins import (
 )
 
 # Result types for transforms
-from osintbuddy.results import (
+from omoika.results import (
     Entity,
     Edge,
     File,
@@ -55,14 +55,14 @@ from osintbuddy.results import (
 )
 
 # JSON to Python compiler
-from osintbuddy.compiler import (
+from omoika.compiler import (
     compile_entity,
     compile_file,
     compile_directory,
 )
 
 # Field types for type-based matching
-from osintbuddy.types import (
+from omoika.types import (
     FieldType,
     TypedValue,
     get_field_type,
@@ -70,26 +70,26 @@ from osintbuddy.types import (
 )
 
 # Settings for transforms
-from osintbuddy.settings import (
+from omoika.settings import (
     TransformSetting,
     SettingsManager,
     get_settings_manager,
 )
 
 # Transform sets for grouping
-from osintbuddy.sets import (
+from omoika.sets import (
     TransformSet,
 )
 
 # UI messages
-from osintbuddy.messages import (
+from omoika.messages import (
     UIMessage,
     MessageType,
     TransformResponse,
 )
 
 # Structured output
-from osintbuddy.output import (
+from omoika.output import (
     emit_result,
     emit_error,
     emit_progress,
@@ -99,7 +99,7 @@ from osintbuddy.output import (
 )
 
 # Error types
-from osintbuddy.errors import (
+from omoika.errors import (
     PluginError,
     PluginWarn,
     PluginNotFoundError,
@@ -115,11 +115,11 @@ from osintbuddy.errors import (
 )
 
 # Dependency management
-from osintbuddy.deps import (
+from omoika.deps import (
     ensure_deps,
     check_deps,
 )
-from osintbuddy.utils import (
+from omoika.utils import (
     resolve_resource_path,
     read_resource_text,
     read_resource_json,

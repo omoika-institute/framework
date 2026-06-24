@@ -1,4 +1,4 @@
-"""Transform result types for OSINTBuddy plugins.
+"""Transform result types for Omoika plugins.
 
 This module provides structured types for transform returns, enabling:
 - Custom edge properties (labels, colors, styles)
@@ -7,7 +7,7 @@ This module provides structured types for transform returns, enabling:
 - Backwards compatibility with plain dict returns
 
 Example usage:
-    from osintbuddy.results import Entity, Edge, File, Subgraph
+    from omoika.results import Entity, Edge, File, Subgraph
 
     # Simple return (backwards compatible)
     return [SomePlugin.blueprint(field="value")]

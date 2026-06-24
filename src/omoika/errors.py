@@ -1,4 +1,4 @@
-"""Error types and codes for OSINTBuddy.
+"""Error types and codes for Omoika.
 
 This module provides structured error handling with error codes
 for programmatic error handling in the CLI and UI.
@@ -10,7 +10,7 @@ from typing import Any
 
 
 class ErrorCode(str, Enum):
-    """Standard error codes for OSINTBuddy operations."""
+    """Standard error codes for Omoika operations."""
 
     # Plugin errors
     PLUGIN_NOT_FOUND = "PLUGIN_NOT_FOUND"

@@ -1,13 +1,13 @@
 # CLI Reference
 
-OSINTBuddy provides the `ob` command-line interface for managing plugins, running transforms, and integrating with the OSINTBuddy application.
+Omoika provides the `ob` command-line interface for managing plugins, running transforms, and integrating with the Omoika application.
 
 ## Installation
 
 The CLI is installed automatically with the package:
 
 ```bash
-pip install osintbuddy
+pip install omoika
 ob --help
 ```
 
@@ -30,7 +30,7 @@ ob --help
 
 ## `ob init`
 
-Download and initialize default entities from the OSINTBuddy GitHub repository.
+Download and initialize default entities from the Omoika GitHub repository.
 
 ```bash
 ob init [OPTIONS]
@@ -434,12 +434,12 @@ ob compile dir json-entities/ -O entities/
 
 | Variable                  | Description                                   |
 | ------------------------- | --------------------------------------------- |
-| `OSINTBUDDY_PLUGINS_PATH` | Default plugins directory                     |
-| `OSINTBUDDY_CONFIG_DIR`   | Settings directory (default: `~/.osintbuddy`) |
+| `OMOIKA_PLUGINS_PATH` | Default plugins directory                     |
+| `OMOIKA_CONFIG_DIR`   | Settings directory (default: `~/.omoika`) |
 
 ```bash
-export OSINTBUDDY_PLUGINS_PATH=/path/to/plugins
-ob entities  # Uses OSINTBUDDY_PLUGINS_PATH
+export OMOIKA_PLUGINS_PATH=/path/to/plugins
+ob entities  # Uses OMOIKA_PLUGINS_PATH
 ```
 
 ---
@@ -480,7 +480,7 @@ ob compile my-plugins/entities/email.json -O my-plugins/entities/email.py
 
 # 4. Create transform
 cat > my-plugins/transforms/email_transforms.py << 'EOF'
-from osintbuddy import transform, Entity
+from omoika import transform, Entity
 
 @transform(target="email@>=1.0.0", label="Test")
 async def test_transform(entity):
@@ -583,7 +583,7 @@ ob transform '...' -C '{"api_key": "your-key"}'
 
 ## Next Steps
 
-- [Getting Started](getting-started.md) - First steps with OSINTBuddy
+- [Getting Started](getting-started.md) - First steps with Omoika
 - [Transforms](transforms.md) - Creating transforms
 - [Settings](settings.md) - Configuration management
 - [API Reference](api-reference.md) - Complete API documentation

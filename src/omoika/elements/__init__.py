@@ -1,5 +1,5 @@
-from osintbuddy.elements.base import BaseElement, BaseInput, BaseDisplay  # noqa
-from osintbuddy.elements.displays import (  # noqa
+from omoika.elements.base import BaseElement, BaseInput, BaseDisplay  # noqa
+from omoika.elements.displays import (  # noqa
     Title,
     Text,
     Markdown,
@@ -13,7 +13,7 @@ from osintbuddy.elements.displays import (  # noqa
     Table,
     Empty
 )
-from osintbuddy.elements.inputs import (  # noqa
+from omoika.elements.inputs import (  # noqa
     UploadFileInput,
     TextInput,
     DropdownInput,

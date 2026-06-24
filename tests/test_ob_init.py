@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import osintbuddy.ob as ob
+import omoika.ob as ob
 
 
 def test_init_cmd_skips_scaffold_and_overwrites_when_user_declines(tmp_path, monkeypatch):

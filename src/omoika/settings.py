@@ -1,4 +1,4 @@
-"""Transform settings framework for OSINTBuddy.
+"""Transform settings framework for Omoika.
 
 This module provides a settings system for transforms, allowing them to
 declare required configuration parameters with types, defaults, and
@@ -124,12 +124,12 @@ class SettingsManager:
     """Manages transform settings storage and retrieval.
 
     Settings are stored in the user's config directory:
-        ~/.osintbuddy/
+        ~/.omoika/
             settings.json          # Global settings
             transforms/
                 <transform_name>.json  # Per-transform settings
     """
-    config_dir: Path = field(default_factory=lambda: Path.home() / ".osintbuddy")
+    config_dir: Path = field(default_factory=lambda: Path.home() / ".omoika")
 
     def __post_init__(self):
         self.config_dir = Path(self.config_dir)

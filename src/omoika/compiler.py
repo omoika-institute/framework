@@ -1,4 +1,4 @@
-"""JSON to Python entity compiler for OSINTBuddy plugins.
+"""JSON to Python entity compiler for Omoika plugins.
 
 This module compiles JSON entity definitions into Python Plugin classes,
 enabling a JSON-first development workflow where entities can be defined
@@ -21,8 +21,8 @@ Example JSON input:
     }
 
 Example output:
-    from osintbuddy.elements import TextInput, DropdownInput, TextAreaInput
-    import osintbuddy as ob
+    from omoika.elements import TextInput, DropdownInput, TextAreaInput
+    import omoika as ob
 
 
     class ExampleEntity(ob.Plugin):
@@ -251,8 +251,8 @@ def compile_entity(entity_json: dict | str, version: str = "1.0.0") -> str:
     all_element_imports = input_imports + display_imports
     imports = []
     if all_element_imports:
-        imports.append(f"from osintbuddy.elements import {', '.join(all_element_imports)}")
-    imports.append("import osintbuddy as ob")
+        imports.append(f"from omoika.elements import {', '.join(all_element_imports)}")
+    imports.append("import omoika as ob")
 
     # Format author as list
     if isinstance(authors, list):

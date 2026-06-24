@@ -1,7 +1,7 @@
-## Introducing OSINTBuddy: Reloaded
+## Introducing Omoika: Reloaded
 
 <p>
-  <a href="https://github.com/osintbuddy/osintbuddy">
+  <a href="https://github.com/omoika/omoika">
     <img src="./watermark.svg" height="130px" alt="Logo">
   </a>
 
@@ -10,17 +10,17 @@
 
 ---
 
-# The OSINTBuddy Plugins Framework
+# The Omoika Plugins Framework
 
-[![PyPI version](https://badge.fury.io/py/osintbuddy.svg)](https://pypi.org/project/osintbuddy/)
+[![PyPI version](https://badge.fury.io/py/omoika.svg)](https://pypi.org/project/omoika/)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The plugin framework for [OSINTBuddy](https://github.com/osintbuddy/osintbuddy), a graph-based OSINT platform for recon, OSINT investigations, link analysis, and more. Offline. Local-first workflows. No cloud dependency.
+The plugin framework for [Omoika](https://github.com/omoika/omoika), a graph-based OSINT platform for recon, OSINT investigations, link analysis, and more. Offline. Local-first workflows. No cloud dependency.
 
 ## Overview
 
-OSINTBuddy's plugin system enables you to define **entities** (_nodes in the graph_) and **transforms** (_operations that create new entities from existing ones_). The framework provides:
+Omoika's plugin system enables you to define **entities** (_nodes in the graph_) and **transforms** (_operations that create new entities from existing ones_). The framework provides:
 
 - **Entity definitions** with rich metadata, icons, colors, and form elements
 - **Transform decorators** with dependency management and version targeting
@@ -32,13 +32,13 @@ OSINTBuddy's plugin system enables you to define **entities** (_nodes in the gra
 ## Installation
 
 ```bash
-pip install osintbuddy[all]
+pip install omoika[all]
 ```
 
 For development:
 
 ```bash
-git clone https://github.com/osintbuddy/plugins.git
+git clone https://github.com/omoika/plugins.git
 cd plugins/
 pip install -e ".[dev]"
 ```
@@ -48,9 +48,9 @@ pip install -e ".[dev]"
 ### Define an Entity
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput, CopyText
-from osintbuddy.types import FieldType
+from omoika import Plugin
+from omoika.elements import TextInput, CopyText
+from omoika.types import FieldType
 
 class EmailEntity(Plugin):
     version = "1.0.0"
@@ -68,7 +68,7 @@ class EmailEntity(Plugin):
 ### Create a Transform
 
 ```python
-from osintbuddy import transform, Entity, Edge
+from omoika import transform, Entity, Edge
 
 @transform(
     target="email@>=1.0.0",
@@ -161,7 +161,7 @@ my-plugins-repo/
 Load plugins via:
 
 ```python
-from osintbuddy import load_plugins_fs
+from omoika import load_plugins_fs
 load_plugins_fs("/path/to/my-plugins", "my_plugins")
 ```
 
@@ -198,7 +198,7 @@ MIT License, see [LICENSE](LICENSE) for details.
 
 ## Links
 
-<!-- - [Documentation](https://docs.osintbuddy.com/) -->
+<!-- - [Documentation](https://docs.omoika.space/) -->
 
-- [OSINTBuddy Application](https://github.com/osintbuddy/osintbuddy)
-- [Issue Tracker](https://github.com/osintbuddy/osintbuddy/issues)
+- [Omoika Application](https://github.com/omoika/omoika)
+- [Issue Tracker](https://github.com/omoika/omoika/issues)

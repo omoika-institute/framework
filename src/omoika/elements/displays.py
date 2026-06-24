@@ -1,11 +1,11 @@
-"""Display elements for OSINTBuddy plugins.
+"""Display elements for Omoika plugins.
 
 Display elements render read-only content in entity views.
 """
 from __future__ import annotations
 
 from typing import Any
-from osintbuddy.elements.base import BaseDisplay
+from omoika.elements.base import BaseDisplay
 
 
 class Title(BaseDisplay):

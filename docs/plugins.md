@@ -1,15 +1,15 @@
 # Plugins & Entities
 
-Entities are the nodes in your OSINTBuddy graph. Each entity type is defined as a `Plugin` subclass that specifies its metadata, form fields, and behavior.
+Entities are the nodes in your Omoika graph. Each entity type is defined as a `Plugin` subclass that specifies its metadata, form fields, and behavior.
 
 ## The Plugin Class
 
 Every entity inherits from `Plugin`:
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput, CopyText
-from osintbuddy.types import FieldType
+from omoika import Plugin
+from omoika.elements import TextInput, CopyText
+from omoika.types import FieldType
 
 
 class PersonEntity(Plugin):
@@ -86,7 +86,7 @@ ip_address@1.0.0
 Plugins are automatically registered when their class is defined. The `Registry` metaclass handles this:
 
 ```python
-from osintbuddy import Registry
+from omoika import Registry
 
 # List all registered plugins
 for label, plugin_class in Registry.plugins.items():
@@ -203,7 +203,7 @@ Transforms target version ranges:
 Add semantic types to enable type-based transform matching:
 
 ```python
-from osintbuddy.types import FieldType
+from omoika.types import FieldType
 
 elements = [
     TextInput(label="Email", field_type=FieldType.EMAIL),
@@ -302,7 +302,7 @@ ob compile email.json -O entities/email.py
 Or programmatically:
 
 ```python
-from osintbuddy import compile_file
+from omoika import compile_file
 
 compile_file("email.json", "entities/email.py", version="1.0.0")
 ```
@@ -310,9 +310,9 @@ compile_file("email.json", "entities/email.py", version="1.0.0")
 ## Complete Example
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput, TextAreaInput, CopyText, Title, Image
-from osintbuddy.types import FieldType
+from omoika import Plugin
+from omoika.elements import TextInput, TextAreaInput, CopyText, Title, Image
+from omoika.types import FieldType
 
 
 class SocialProfile(Plugin):
@@ -373,8 +373,8 @@ If your plugin needs a local JSON or text file (for dropdown options, templates,
 load it relative to the plugin module:
 
 ```python
-from osintbuddy import Plugin, read_resource_json
-from osintbuddy.elements import DropdownInput
+from omoika import Plugin, read_resource_json
+from omoika.elements import DropdownInput
 
 options = read_resource_json(__file__, "cses.json", default=[])
 

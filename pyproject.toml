@@ -3,11 +3,11 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "osintbuddy"
+name = "omoika"
 authors = [
-    {name = "jerlendds", email = "jerlendds@osintbuddy.com"},
+    {name = "jerlendds", email = "jerlendds@omoika.space"},
 ]
-description = "The OSINTBuddy plugins framework for graph-based information analysis and offline local-first investigative workflows."
+description = "The Omoika plugins framework for graph-based information analysis and offline local-first investigative workflows."
 readme = "README.md"
 license = {text = "MIT"}
 classifiers = [
@@ -53,7 +53,7 @@ dev = [
     "black>=25.12.0",
     "pytest-cov>=7.0.0",
 ]
-#  Browser automation, used by some default OSINTBuddy plugins
+#  Browser automation, used by some default Omoika plugins
 all = [
     "selenium>=4.39.0",
     "playwright>=1.57.0",
@@ -79,18 +79,18 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://osintbuddy.com"
-Documentation = "https://docs.osintbuddy.com/"
-Repository = "https://github.com/osintbuddy/osintbuddy"
-Source = "https://github.com/osintbuddy/plugins"
-Tracker = "https://github.com/osintbuddy/osintbuddy/issues"
-Changelog = "https://github.com/osintbuddy/plugins/releases"
+Homepage = "https://omoika.space"
+Documentation = "https://docs.omoika.space/"
+Repository = "https://github.com/omoika/omoika"
+Source = "https://github.com/omoika/plugins"
+Tracker = "https://github.com/omoika/omoika/issues"
+Changelog = "https://github.com/omoika/plugins/releases"
 
 [project.scripts]
-ob = "osintbuddy.ob:main"
+ob = "omoika.ob:main"
 
 [tool.flit.module]
-name = "osintbuddy"
+name = "omoika"
 
 [tool.ruff]
 line-length = 120
@@ -124,7 +124,7 @@ target-version = ['py311', 'py312']
 
 [tool.coverage.run]
 branch = true
-source = ["src/osintbuddy"]
+source = ["src/omoika"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -153,8 +153,8 @@ reportMissingImports = true
 reportMissingTypeStubs = false
 
 [tool.hatch.build.targets.sdist.force-include]
-"bin/ob.py" = "osintbuddy/ob.py"
+"bin/ob.py" = "omoika/ob.py"
 
 [tool.hatch.build.targets.wheel.force-include]
-"bin/ob.py" = "osintbuddy/ob.py"
+"bin/ob.py" = "omoika/ob.py"
 

@@ -1,10 +1,10 @@
-"""Console configuration for OSINTBuddy CLI."""
+"""Console configuration for Omoika CLI."""
 from __future__ import annotations
 
 from rich.console import Console
 from rich.theme import Theme
 
-# Custom theme for OSINTBuddy
+# Custom theme for Omoika
 OSIB_THEME = Theme({
     "info": "cyan",
     "warning": "yellow",

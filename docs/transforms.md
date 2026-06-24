@@ -1,11 +1,11 @@
 # Transforms
 
-Transforms are async functions that operate on entities to produce new entities, files, or subgraphs. They appear in the context menu when you right-click a node in OSINTBuddy.
+Transforms are async functions that operate on entities to produce new entities, files, or subgraphs. They appear in the context menu when you right-click a node in Omoika.
 
 ## Basic Transform
 
 ```python
-from osintbuddy import transform, Entity, Edge
+from omoika import transform, Entity, Edge
 
 
 @transform(
@@ -114,7 +114,7 @@ Long-running transforms can stream results incrementally and emit progress updat
 Use an async generator to yield results, and `emit_progress` for UI progress.
 
 ```python
-from osintbuddy import transform, Entity, emit_progress
+from omoika import transform, Entity, emit_progress
 
 @transform(target="domain@>=1.0.0", label="Bulk Lookup")
 async def bulk_lookup(entity):
@@ -144,7 +144,7 @@ return Entity(
 ### With File Attachments
 
 ```python
-from osintbuddy import File
+from omoika import File
 
 return Entity(
     data=Report.blueprint(title="Analysis Report"),
@@ -158,7 +158,7 @@ return Entity(
 ### Complex Subgraphs
 
 ```python
-from osintbuddy import Subgraph
+from omoika import Subgraph
 
 # Create a connected graph structure
 entity1 = Entity(data=Server.blueprint(ip="192.168.1.1"))
@@ -224,8 +224,8 @@ async def whois_lookup(entity):
 Define configurable settings for your transform:
 
 ```python
-from osintbuddy import TransformSetting
-from osintbuddy.settings import SettingType
+from omoika import TransformSetting
+from omoika.settings import SettingType
 
 
 @transform(
@@ -262,14 +262,14 @@ async def screenshot_website(entity, cfg=None):
     # Use settings...
 ```
 
-Settings are persisted in `~/.osintbuddy/transforms/`.
+Settings are persisted in `~/.omoika/transforms/`.
 
 ## Transform Sets
 
 Group related transforms for organization:
 
 ```python
-from osintbuddy.sets import TransformSet, NETWORK, SOCIAL_MEDIA
+from omoika.sets import TransformSet, NETWORK, SOCIAL_MEDIA
 
 # Use built-in sets
 @transform(
@@ -328,7 +328,7 @@ async def validate_email(entity):
 Use structured exceptions for proper error reporting:
 
 ```python
-from osintbuddy import (
+from omoika import (
     PluginError,
     NetworkError,
     RateLimitError,
@@ -363,7 +363,7 @@ async def api_lookup(entity, cfg=None):
 Send feedback to the user during transform execution:
 
 ```python
-from osintbuddy import TransformResponse, UIMessage, MessageType
+from omoika import TransformResponse, UIMessage, MessageType
 
 
 @transform(target="domain@>=1.0.0", label="Deep Scan")
@@ -391,7 +391,7 @@ async def deep_scan(entity):
 For long-running transforms:
 
 ```python
-from osintbuddy import emit_progress, ProgressEmitter
+from omoika import emit_progress, ProgressEmitter
 
 
 @transform(target="domain@>=1.0.0", label="Full Enumeration")
@@ -437,7 +437,7 @@ Use different labels or version specs to avoid collisions.
 ## Complete Example
 
 ```python
-from osintbuddy import (
+from omoika import (
     transform,
     Entity,
     Edge,
@@ -446,7 +446,7 @@ from osintbuddy import (
     TransformResponse,
     NetworkError,
 )
-from osintbuddy.sets import NETWORK
+from omoika.sets import NETWORK
 
 
 @transform(

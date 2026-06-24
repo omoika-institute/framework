@@ -1,4 +1,4 @@
-"""Base element classes for OSINTBuddy plugins.
+"""Base element classes for Omoika plugins.
 
 Elements are the building blocks of entity definitions, providing
 input fields and display components for the UI.
@@ -8,12 +8,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from osintbuddy.types import FieldType
+    from omoika.types import FieldType
 
 
 class BaseElement(object):
     """
-    The BaseElement class represents a basic building block used in OsintBuddy
+    The BaseElement class represents a basic building block used in Omoika
     plugins. It is designed to implement the base styles used
     in other nodes that can render a nodes element
     with a specific element type, label, and style on the OSINTbuddy UI.

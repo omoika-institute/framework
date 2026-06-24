@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""OSINTBuddy plugins CLI
+"""Omoika plugins CLI
 
-This script contains the commands needed to manage an OSINTBuddy Plugins service.
+This script contains the commands needed to manage an Omoika Plugins service.
 
 Commands:
     ob start                    Start the FastAPI microservice
@@ -33,13 +33,13 @@ from rich.syntax import Syntax
 from rich.table import Table
 from rich.traceback import install as install_traceback
 
-from osintbuddy import Registry, __version__, load_plugins_fs
-from osintbuddy.plugins import TransformPayload
-from osintbuddy.utils import to_snake_case
-from osintbuddy.results import normalize_result
-from osintbuddy.output import emit_result, emit_error, emit_progress, emit_json
-from osintbuddy.errors import PluginError, ErrorCode
-from osintbuddy.repo_inspector import (
+from omoika import Registry, __version__, load_plugins_fs
+from omoika.plugins import TransformPayload
+from omoika.utils import to_snake_case
+from omoika.results import normalize_result
+from omoika.output import emit_result, emit_error, emit_progress, emit_json
+from omoika.errors import PluginError, ErrorCode
+from omoika.repo_inspector import (
     ensure_local_git_repo,
     inspect_repo,
     load_existing_manifest,
@@ -49,8 +49,8 @@ from osintbuddy.repo_inspector import (
     write_manifest,
     write_readme,
 )
-from osintbuddy.cli.console import console, err_console, OSIB_THEME
-from osintbuddy.cli.display import (
+from omoika.cli.console import console, err_console, OSIB_THEME
+from omoika.cli.display import (
     print_banner,
     print_error,
     print_success,
@@ -59,13 +59,13 @@ from osintbuddy.cli.display import (
     print_entities_table,
     print_transforms_table,
 )
-from osintbuddy.cli.progress import (
+from omoika.cli.progress import (
     Step,
     StepRunner,
     TransformProgress,
     PluginLoadProgress,
 )
-from osintbuddy.cli.logging import setup_logging, get_logger
+from omoika.cli.logging import setup_logging, get_logger
 
 # Install rich traceback handler for beautiful error display
 install_traceback(show_locals=True, console=err_console)
@@ -111,7 +111,7 @@ def load_git_entities() -> None:
                 log.info(f"Downloading: {entity}")
                 try:
                     resp = client.get(
-                        f"https://raw.githubusercontent.com/osintbuddy/entities/refs/heads/main/{entity}"
+                        f"https://raw.githubusercontent.com/omoika/entities/refs/heads/main/{entity}"
                     )
                     resp.raise_for_status()
                     entity_path.write_text(resp.text)
@@ -142,7 +142,7 @@ def init_entities() -> None:
     ]
 
     runner = StepRunner(speed=0.8)
-    runner.run_steps(steps, header_lines=["[info]Initializing OSINTBuddy entities...[/]", ""])
+    runner.run_steps(steps, header_lines=["[info]Initializing Omoika entities...[/]", ""])
 
     load_git_entities()
     print_success(f"Loaded {len(DEFAULT_ENTITIES)} default entities to ./plugins/")
@@ -292,7 +292,7 @@ async def run_transform(
                 emit_progress("Installing dependencies...", 20)
             if interactive:
                 print_info(f"Installing dependencies: {', '.join(deps)}")
-            from osintbuddy.deps import ensure_deps
+            from omoika.deps import ensure_deps
             ensure_deps(tuple(deps))
 
         # Execute transform
@@ -557,7 +557,7 @@ def compile_entity_cmd(
     interactive: bool = True,
 ) -> None:
     """Compile a JSON entity definition to Python."""
-    from osintbuddy.compiler import compile_file
+    from omoika.compiler import compile_file
 
     if interactive:
         print_info(f"Compiling: {json_path}")
@@ -580,7 +580,7 @@ def compile_directory_cmd(
     interactive: bool = True,
 ) -> None:
     """Compile all JSON entities in a directory."""
-    from osintbuddy.compiler import compile_directory
+    from omoika.compiler import compile_directory
 
     if interactive:
         print_info(f"Compiling directory: {json_dir}")
@@ -689,7 +689,7 @@ def init_cmd(
     else:
         if manifest is not None:
             print(json.dumps(manifest, indent=2))
-    print_info("If you want to share your plugins with the OSINTBuddy community in the marketplace, create a Github repo to add your git remote now: https://github.com/new")
+    print_info("If you want to share your plugins with the Omoika community in the marketplace, create a Github repo to add your git remote now: https://github.com/new")
     return manifest or {}
 
 
@@ -748,7 +748,7 @@ commands = {
 def main() -> None:
     """Main CLI entry point."""
     parser = ArgumentParser(
-        description="OSINTBuddy Plugins CLI",
+        description="Omoika Plugins CLI",
         formatter_class=RawDescriptionHelpFormatter,
         epilog="""
 Examples:

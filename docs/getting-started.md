@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide walks you through installing OSINTBuddy, setting up a plugin project, and creating your first entity and transform.
+This guide walks you through installing Omoika, setting up a plugin project, and creating your first entity and transform.
 
 ## Prerequisites
 
@@ -10,13 +10,13 @@ This guide walks you through installing OSINTBuddy, setting up a plugin project,
 ## Installation from PyPI
 
 ```bash
-pip install osintbuddy
+pip install omoika
 ```
 
 ### From Source (Development)
 
 ```bash
-git clone https://github.com/osintbuddy/plugins.git
+git clone https://github.com/omoika/plugins.git
 cd plugins/
 pip install -e ".[dev,all]"
 ```
@@ -57,9 +57,9 @@ The framework expects:
 Create `entities/email.py`:
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput, CopyText
-from osintbuddy.types import FieldType
+from omoika import Plugin
+from omoika.elements import TextInput, CopyText
+from omoika.types import FieldType
 
 
 class EmailEntity(Plugin):
@@ -105,7 +105,7 @@ class EmailEntity(Plugin):
 Create `transforms/email_transforms.py`:
 
 ```python
-from osintbuddy import transform, Entity, Edge, Registry
+from omoika import transform, Entity, Edge, Registry
 from entities.email import EmailEntity
 
 
@@ -151,8 +151,8 @@ If your plugin includes local JSON or text files (like dropdown options),
 load them relative to the plugin module:
 
 ```python
-from osintbuddy import Plugin, read_resource_json
-from osintbuddy.elements import DropdownInput
+from omoika import Plugin, read_resource_json
+from omoika.elements import DropdownInput
 
 options = read_resource_json(__file__, "options.json", default=[])
 
@@ -225,7 +225,7 @@ return Subgraph(
 Use the structured error types:
 
 ```python
-from osintbuddy import PluginError, NetworkError, RateLimitError
+from omoika import PluginError, NetworkError, RateLimitError
 
 @transform(target="domain@>=1.0.0", label="DNS Lookup")
 async def dns_lookup(entity):

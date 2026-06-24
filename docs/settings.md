@@ -6,7 +6,7 @@ The settings framework provides persistent configuration for transforms. Setting
 
 Transforms can declare configuration requirements using `TransformSetting`. Settings are:
 
-- Persisted to `~/.osintbuddy/`
+- Persisted to `~/.omoika/`
 - Merged from multiple sources (defaults, global, transform-specific, runtime)
 - Validated before transform execution
 - Displayed in the UI for user configuration
@@ -14,8 +14,8 @@ Transforms can declare configuration requirements using `TransformSetting`. Sett
 ## Defining Settings
 
 ```python
-from osintbuddy import transform, TransformSetting
-from osintbuddy.settings import SettingType
+from omoika import transform, TransformSetting
+from omoika.settings import SettingType
 
 
 @transform(
@@ -80,10 +80,10 @@ async def whois_lookup(entity, cfg=None):
 
 ## Storage Location
 
-Settings are stored in `~/.osintbuddy/`:
+Settings are stored in `~/.omoika/`:
 
 ```
-~/.osintbuddy/
+~/.omoika/
 ├── settings.json              # Global settings
 └── transforms/
     ├── whois_lookup.json      # Transform-specific settings
@@ -114,8 +114,8 @@ Settings are stored in `~/.osintbuddy/`:
 Settings are merged in this order (later sources override earlier):
 
 1. **Default values** - From `TransformSetting.default_value`
-2. **Global settings** - From `~/.osintbuddy/settings.json` (if `global_setting=True`)
-3. **Transform settings** - From `~/.osintbuddy/transforms/{name}.json`
+2. **Global settings** - From `~/.omoika/settings.json` (if `global_setting=True`)
+3. **Transform settings** - From `~/.omoika/transforms/{name}.json`
 4. **Runtime config** - Passed via `cfg` parameter or CLI `-C` flag
 
 In the Electron app, declared `TransformSetting` entries are preloaded into
@@ -138,7 +138,7 @@ async def lookup(entity, cfg=None):
 The `SettingsManager` class handles persistence and validation:
 
 ```python
-from osintbuddy import get_settings_manager
+from omoika import get_settings_manager
 
 manager = get_settings_manager()
 
@@ -160,8 +160,8 @@ manager.set_setting("timeout", "60", transform_name="whois_lookup")
 Build the merged config for a transform:
 
 ```python
-from osintbuddy import TransformSetting, get_settings_manager
-from osintbuddy.settings import SettingType
+from omoika import TransformSetting, get_settings_manager
+from omoika.settings import SettingType
 
 settings = [
     TransformSetting(
@@ -193,7 +193,7 @@ config = manager.build_config(
 Check that required settings are present:
 
 ```python
-from osintbuddy import ConfigError
+from omoika import ConfigError
 
 try:
     manager.validate_config(settings, config)
@@ -204,7 +204,7 @@ except ConfigError as e:
 ## Complete Example
 
 ```python
-from osintbuddy import (
+from omoika import (
     transform,
     Entity,
     Edge,
@@ -212,7 +212,7 @@ from osintbuddy import (
     ConfigError,
     get_settings_manager,
 )
-from osintbuddy.settings import SettingType
+from omoika.settings import SettingType
 
 
 # Define settings

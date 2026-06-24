@@ -4,8 +4,8 @@ import json
 import sys
 import uuid
 
-import osintbuddy.repo_inspector as repo_inspector
-from osintbuddy.repo_inspector import (
+import omoika.repo_inspector as repo_inspector
+from omoika.repo_inspector import (
     build_manifest,
     build_manifest_id,
     build_readme,
@@ -25,9 +25,9 @@ def make_plugin_repo(tmp_path):
         tmp_path / "pyproject.toml",
         """
 [project]
-name = "osintbuddy-plugins-reloaded"
+name = "omoika-plugins-reloaded"
 version = "1.0.0"
-description = "Default entity and transform collection for OSINTBuddy."
+description = "Default entity and transform collection for Omoika."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.12"
@@ -37,8 +37,8 @@ keywords = ["osint", "plugins", "recon", "web"]
 name = "OSIB"
 
 [project.urls]
-Homepage = "https://github.com/osintbuddy/plugins"
-Repository = "https://github.com/osintbuddy/plugins"
+Homepage = "https://github.com/omoika/plugins"
+Repository = "https://github.com/omoika/plugins"
 """.strip()
         + "\n",
     )
@@ -47,8 +47,8 @@ Repository = "https://github.com/osintbuddy/plugins"
     write_file(
         tmp_path / "entities" / "website.py",
         """
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput
+from omoika import Plugin
+from omoika.elements import TextInput
 
 
 class Website(Plugin):
@@ -70,7 +70,7 @@ class Website(Plugin):
         """
 import socket
 
-from osintbuddy import transform
+from omoika import transform
 
 
 @transform(target="website@>=1.0.0", label="To IP", icon="building-broadcast-tower")
@@ -103,11 +103,11 @@ def test_build_manifest_includes_repo_graph(tmp_path, monkeypatch):
     snapshot = inspect_repo(plugins_path=str(repo_root), include_hashes=True)
     manifest = build_manifest(snapshot, include_hashes=True)
 
-    assert manifest["id"] == "12345678-1234-5678-1234-567812345678-git-user-osintbuddy-plugins-reloaded"
-    assert manifest["name"] == "osintbuddy-plugins-reloaded"
+    assert manifest["id"] == "12345678-1234-5678-1234-567812345678-git-user-omoika-plugins-reloaded"
+    assert manifest["name"] == "omoika-plugins-reloaded"
     assert manifest["author"] == "git-user"
-    assert manifest["repo"] == "osintbuddy/plugins"
-    assert manifest["homepage"] == "https://github.com/osintbuddy/plugins"
+    assert manifest["repo"] == "omoika/plugins"
+    assert manifest["homepage"] == "https://github.com/omoika/plugins"
     assert manifest["license"] == "MIT"
     assert manifest["min_app_version"] == "9.9.9"
     assert "version" not in manifest
@@ -329,6 +329,6 @@ def test_scaffold_default_repo_files_creates_examples_without_overwriting(tmp_pa
 
 
 def test_build_manifest_id_uses_uuid_author_and_name_slug():
-    manifest_id = build_manifest_id("OSINTBuddy Plugins Reloaded", "jerlendds")
+    manifest_id = build_manifest_id("Omoika Plugins Reloaded", "jerlendds")
     assert str(uuid.UUID(manifest_id[:36])) == manifest_id[:36]
-    assert manifest_id.endswith("-jerlendds-osintbuddy-plugins-reloaded")
+    assert manifest_id.endswith("-jerlendds-omoika-plugins-reloaded")

@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-from osintbuddy import Registry
-from osintbuddy.errors import PluginError
-from osintbuddy.ipc_worker import ObWorker
+from omoika import Registry
+from omoika.errors import PluginError
+from omoika.ipc_worker import ObWorker
 
 
 def _reset_registry() -> None:
@@ -26,7 +26,7 @@ async def test_worker_reports_stream_transform_source_details(tmp_path: Path):
 
     (entities_dir / "failing_entity.py").write_text(
         (
-            'from osintbuddy import Plugin\n\n'
+            'from omoika import Plugin\n\n'
             "class FailingEntity(Plugin):\n"
             '    version = "1.0.0"\n'
             '    label = "Failing Entity"\n'
@@ -36,7 +36,7 @@ async def test_worker_reports_stream_transform_source_details(tmp_path: Path):
     transform_file = transforms_dir / "broken_stream.py"
     transform_file.write_text(
         (
-            "from osintbuddy import transform\n\n"
+            "from omoika import transform\n\n"
             '@transform(target="failing_entity@1.0.0", label="Broken Stream")\n'
             "async def broken_stream(entity):\n"
             '    yield {"label": "Transient"}\n'

@@ -1,10 +1,10 @@
-"""Transform sets for OSINTBuddy.
+"""Transform sets for Omoika.
 
 Transform sets allow grouping related transforms together for
 organization and bulk operations.
 
 Example usage:
-    from osintbuddy.sets import TransformSet
+    from omoika.sets import TransformSet
 
     RECON_SET = TransformSet(
         name="Reconnaissance",

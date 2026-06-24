@@ -1,4 +1,4 @@
-"""OSINTBuddy Plugin System.
+"""Omoika Plugin System.
 
 This module provides the core plugin infrastructure including:
 - Plugin base class for entity definitions
@@ -24,16 +24,16 @@ from collections import defaultdict
 from collections.abc import Callable, Awaitable
 from pydantic import BaseModel, ConfigDict
 from uuid import uuid4
-from osintbuddy.elements.base import BaseElement
-from osintbuddy.errors import PluginError, ErrorCode
-from osintbuddy.utils import to_snake_case
-from osintbuddy.results import normalize_result
-from osintbuddy.messages import TransformResponse
+from omoika.elements.base import BaseElement
+from omoika.errors import PluginError, ErrorCode
+from omoika.utils import to_snake_case
+from omoika.results import normalize_result
+from omoika.messages import TransformResponse
 
 if TYPE_CHECKING:
-    from osintbuddy.settings import TransformSetting
-    from osintbuddy.sets import TransformSet
-    from osintbuddy.types import FieldType
+    from omoika.settings import TransformSetting
+    from omoika.sets import TransformSet
+    from omoika.types import FieldType
 
 E = NewType('E', BaseElement)
 
@@ -147,7 +147,7 @@ def _exec_module_with_auto_install(
         if not package_name:
             raise
 
-        from osintbuddy.deps import install_packages
+        from omoika.deps import install_packages
 
         install_packages([package_name], quiet=False)
         _purge_module_tree(exc.name or "")
@@ -367,7 +367,7 @@ ElementsLayout: TypeAlias = list[BaseElement | list[BaseElement]]
 
 
 class Plugin(object, metaclass=Registry):
-    """Base class for OSINTBuddy entity plugins.
+    """Base class for Omoika entity plugins.
 
     Subclass this to define new entity types. Entities define:
     - Metadata (label, description, icon, color)
@@ -532,13 +532,13 @@ class Plugin(object, metaclass=Registry):
                 # Handle dependencies
                 deps = getattr(transform_fn, 'deps', None)
                 if deps:
-                    from osintbuddy.deps import ensure_deps
+                    from omoika.deps import ensure_deps
                     ensure_deps(tuple(deps))
 
                 # Handle settings
                 settings = getattr(transform_fn, 'settings', None)
                 if settings:
-                    from osintbuddy.settings import get_settings_manager
+                    from omoika.settings import get_settings_manager
                     manager = get_settings_manager()
                     cfg = manager.build_config(
                         transform_fn.label,
@@ -632,7 +632,7 @@ class Plugin(object, metaclass=Registry):
         return field_types
 
 
-def load_plugins_fs(plugins_path: str = "plugins", package: str = "osintbuddy.transforms") -> dict[str, type[Plugin]]:
+def load_plugins_fs(plugins_path: str = "plugins", package: str = "omoika.transforms") -> dict[str, type[Plugin]]:
     """Load plugins from filesystem.
 
     Loads:
@@ -778,7 +778,7 @@ def transform(
             async def wrapper(entity: Any, self: Any = None, **kwargs: Any) -> Any:
                 # Install dependencies if specified
                 if deps:
-                    from osintbuddy.deps import ensure_deps
+                    from omoika.deps import ensure_deps
                     ensure_deps(tuple(deps))
                 if accepts_self:
                     async for item in func(self=self, entity=entity, **kwargs):
@@ -790,7 +790,7 @@ def transform(
             @functools.wraps(func)
             def wrapper(entity: Any, self: Any = None, **kwargs: Any) -> Any:
                 if deps:
-                    from osintbuddy.deps import ensure_deps
+                    from omoika.deps import ensure_deps
                     ensure_deps(tuple(deps))
                 if accepts_self:
                     yield from func(self=self, entity=entity, **kwargs)
@@ -801,7 +801,7 @@ def transform(
             async def wrapper(entity: Any, self: Any = None, **kwargs: Any) -> Any:
                 # Install dependencies if specified
                 if deps:
-                    from osintbuddy.deps import ensure_deps
+                    from omoika.deps import ensure_deps
                     ensure_deps(tuple(deps))
                 if accepts_self:
                     if inspect.iscoroutinefunction(func):

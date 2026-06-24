@@ -1,4 +1,4 @@
-"""IPC worker for OSINTBuddy plugins.
+"""IPC worker for Omoika plugins.
 
 Provides a cross-platform IPC channel over an extra stdio pipe (fd 3).
 Stdout/stderr remain free for plugin developer logs.
@@ -15,19 +15,19 @@ import sys
 from datetime import datetime, UTC
 from typing import Any, AsyncIterator, Iterator
 
-from osintbuddy import Registry, load_plugins_fs
-from osintbuddy.plugins import TransformPayload, build_transform_error
-from osintbuddy.results import normalize_result
-from osintbuddy.output import ProgressEvent, set_progress_callback
-from osintbuddy.runtime import ensure_runtime_ready
-from osintbuddy.utils import to_snake_case
-from osintbuddy.errors import PluginError, ErrorCode
+from omoika import Registry, load_plugins_fs
+from omoika.plugins import TransformPayload, build_transform_error
+from omoika.results import normalize_result
+from omoika.output import ProgressEvent, set_progress_callback
+from omoika.runtime import ensure_runtime_ready
+from omoika.utils import to_snake_case
+from omoika.errors import PluginError, ErrorCode
 
 ensure_runtime_ready()
 
 
 def _default_plugins_path() -> str:
-    return os.environ.get("OSINTBUDDY_PLUGINS_PATH") or os.getcwd() + "/plugins"
+    return os.environ.get("OMOIKA_PLUGINS_PATH") or os.getcwd() + "/plugins"
 
 
 class IpcChannel:
@@ -306,7 +306,7 @@ class ObWorker:
 
         deps = getattr(transform_fn, "deps", None)
         if deps:
-            from osintbuddy.deps import ensure_deps
+            from omoika.deps import ensure_deps
             ensure_deps(tuple(deps))
 
         plugin_instance = plugin_cls()
@@ -499,7 +499,7 @@ async def _handle_message(channel: IpcChannel, worker: ObWorker, message: dict[s
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="OSINTBuddy IPC worker")
+    parser = argparse.ArgumentParser(description="Omoika IPC worker")
     parser.add_argument("-P", "--plugins", type=str, help="Plugins directory path")
     args = parser.parse_args()
 

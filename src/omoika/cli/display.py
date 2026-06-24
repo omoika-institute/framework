@@ -1,4 +1,4 @@
-"""Display utilities for OSINTBuddy CLI."""
+"""Display utilities for Omoika CLI."""
 from __future__ import annotations
 
 import random
@@ -11,8 +11,8 @@ from rich.text import Text
 from rich.syntax import Syntax
 from rich.traceback import Traceback
 
-from osintbuddy import __version__
-from osintbuddy.cli.console import console, err_console
+from omoika import __version__
+from omoika.cli.console import console, err_console
 
 
 BANNER = r"""
@@ -28,10 +28,10 @@ BANNER = r"""
 
 
 def print_banner(show_session: bool = True) -> None:
-    """Print the OSINTBuddy banner with session info."""
+    """Print the Omoika banner with session info."""
     console.print(Text(BANNER, style="cyan"))
     console.print(
-        f"[header]osintbuddy[/] [version]v{__version__}[/] [success]ready[/]"
+        f"[header]omoika[/] [version]v{__version__}[/] [success]ready[/]"
     )
 
     if show_session:

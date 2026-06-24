@@ -1,11 +1,11 @@
-"""Input elements for OSINTBuddy plugins.
+"""Input elements for Omoika plugins.
 
 Input elements capture user data in entity forms.
 """
 from __future__ import annotations
 
 from typing import Any
-from osintbuddy.elements.base import BaseInput
+from omoika.elements.base import BaseInput
 
 
 class UploadFileInput(BaseInput):

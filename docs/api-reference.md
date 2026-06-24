@@ -1,6 +1,6 @@
 # API Reference
 
-Complete reference for the OSINTBuddy plugin framework API.
+Complete reference for the Omoika plugin framework API.
 
 ## Core Classes
 
@@ -9,7 +9,7 @@ Complete reference for the OSINTBuddy plugin framework API.
 Base class for all entity definitions.
 
 ```python
-from osintbuddy import Plugin
+from omoika import Plugin
 
 class MyEntity(Plugin):
     version: str                    # Required: semantic version
@@ -69,7 +69,7 @@ types = MyEntity.get_field_types()
 Metaclass that manages plugin registration.
 
 ```python
-from osintbuddy import Registry
+from omoika import Registry
 ```
 
 #### Class Attributes
@@ -110,7 +110,7 @@ Register a transform function (called automatically by decorator).
 Pydantic model passed to transform functions.
 
 ```python
-from osintbuddy import TransformPayload
+from omoika import TransformPayload
 ```
 
 #### Attributes
@@ -149,7 +149,7 @@ email = entity.get_typed_field("email")
 Decorator for defining transform functions.
 
 ```python
-from osintbuddy import transform
+from omoika import transform
 
 @transform(
     target: str,                          # Required: entity@version_spec
@@ -175,7 +175,7 @@ async def my_transform(entity: TransformPayload, cfg: dict = None):
 Wrapper for transform results with metadata.
 
 ```python
-from osintbuddy import Entity
+from omoika import Entity
 
 Entity(
     data: dict,                   # Required: from Plugin.blueprint()
@@ -190,7 +190,7 @@ Entity(
 Custom edge styling.
 
 ```python
-from osintbuddy import Edge
+from omoika import Edge
 
 Edge(
     label: str = "",              # Edge label
@@ -207,7 +207,7 @@ Edge(
 File attachment.
 
 ```python
-from osintbuddy import File
+from omoika import File
 
 File(
     path: str,                    # Required: absolute file path
@@ -222,7 +222,7 @@ File(
 Complex multi-entity result.
 
 ```python
-from osintbuddy import Subgraph
+from omoika import Subgraph
 
 Subgraph(
     entities: list[Entity] = [],
@@ -235,7 +235,7 @@ Subgraph(
 Normalize various result formats.
 
 ```python
-from osintbuddy import normalize_result
+from omoika import normalize_result
 
 normalized = normalize_result(result, default_edge_label="related")
 # Always returns list of normalized dicts
@@ -250,7 +250,7 @@ normalized = normalize_result(result, default_edge_label="related")
 Enum of semantic field types.
 
 ```python
-from osintbuddy.types import FieldType
+from omoika.types import FieldType
 
 FieldType.EMAIL
 FieldType.IP_ADDRESS
@@ -264,7 +264,7 @@ FieldType.URL
 Wrapper for values with explicit type.
 
 ```python
-from osintbuddy.types import TypedValue
+from omoika.types import TypedValue
 
 typed = TypedValue(value="user@example.com", field_type=FieldType.EMAIL)
 ```
@@ -274,7 +274,7 @@ typed = TypedValue(value="user@example.com", field_type=FieldType.EMAIL)
 Infer field type from value.
 
 ```python
-from osintbuddy.types import get_field_type
+from omoika.types import get_field_type
 
 field_type = get_field_type("192.168.1.1")  # FieldType.IPV4
 ```
@@ -284,7 +284,7 @@ field_type = get_field_type("192.168.1.1")  # FieldType.IPV4
 Check type compatibility.
 
 ```python
-from osintbuddy.types import are_types_compatible
+from omoika.types import are_types_compatible
 
 compatible = are_types_compatible(FieldType.IP_ADDRESS, FieldType.IPV4)  # True
 ```
@@ -296,7 +296,7 @@ compatible = are_types_compatible(FieldType.IP_ADDRESS, FieldType.IPV4)  # True
 ### Input Elements
 
 ```python
-from osintbuddy.elements import (
+from omoika.elements import (
     TextInput,
     TextAreaInput,
     DropdownInput,
@@ -312,7 +312,7 @@ UploadFileInput(label, icon=None)
 ### Display Elements
 
 ```python
-from osintbuddy.elements import (
+from omoika.elements import (
     Title,
     Text,
     CopyText,
@@ -348,8 +348,8 @@ Empty(width=12)
 Configuration option for transforms.
 
 ```python
-from osintbuddy import TransformSetting
-from osintbuddy.settings import SettingType
+from omoika import TransformSetting
+from omoika.settings import SettingType
 
 TransformSetting(
     name: str,                    # Config key
@@ -366,7 +366,7 @@ TransformSetting(
 ### SettingType
 
 ```python
-from osintbuddy.settings import SettingType
+from omoika.settings import SettingType
 
 SettingType.STRING
 SettingType.INT
@@ -383,7 +383,7 @@ SettingType.DATETIME
 Manage persistent settings.
 
 ```python
-from osintbuddy import get_settings_manager
+from omoika import get_settings_manager
 
 manager = get_settings_manager()
 
@@ -415,7 +415,7 @@ manager.validate_config(settings: list, config: dict) -> None  # Raises ConfigEr
 Group transforms together.
 
 ```python
-from osintbuddy.sets import TransformSet
+from omoika.sets import TransformSet
 
 MY_SET = TransformSet(
     name: str,
@@ -427,7 +427,7 @@ MY_SET = TransformSet(
 ### Built-in Sets
 
 ```python
-from osintbuddy.sets import (
+from omoika.sets import (
     OSINT_CORE,
     SOCIAL_MEDIA,
     NETWORK,
@@ -448,7 +448,7 @@ from osintbuddy.sets import (
 User feedback message.
 
 ```python
-from osintbuddy import UIMessage, MessageType
+from omoika import UIMessage, MessageType
 
 UIMessage(
     message: str,
@@ -462,7 +462,7 @@ UIMessage(
 ### MessageType
 
 ```python
-from osintbuddy import MessageType
+from omoika import MessageType
 
 MessageType.INFO
 MessageType.WARNING
@@ -476,7 +476,7 @@ MessageType.SUCCESS
 Fluent response builder.
 
 ```python
-from osintbuddy import TransformResponse
+from omoika import TransformResponse
 
 response = TransformResponse()
 response.info("Starting...")
@@ -495,7 +495,7 @@ return response
 Emit structured result.
 
 ```python
-from osintbuddy import emit_result
+from omoika import emit_result
 
 emit_result({"entities": [...], "edges": [...]})
 # Outputs:
@@ -509,8 +509,8 @@ emit_result({"entities": [...], "edges": [...]})
 Emit structured error.
 
 ```python
-from osintbuddy import emit_error
-from osintbuddy.errors import ErrorCode
+from omoika import emit_error
+from omoika.errors import ErrorCode
 
 emit_error("Failed", ErrorCode.TRANSFORM_FAILED, {"reason": "..."})
 ```
@@ -520,7 +520,7 @@ emit_error("Failed", ErrorCode.TRANSFORM_FAILED, {"reason": "..."})
 Emit progress update.
 
 ```python
-from osintbuddy import emit_progress
+from omoika import emit_progress
 
 emit_progress("Processing...", percent=50, stage="analysis")
 ```
@@ -530,7 +530,7 @@ emit_progress("Processing...", percent=50, stage="analysis")
 Context manager for progress.
 
 ```python
-from osintbuddy import ProgressEmitter
+from omoika import ProgressEmitter
 
 with ProgressEmitter("Analysis") as progress:
     progress.update("Starting...", 0)
@@ -545,7 +545,7 @@ with ProgressEmitter("Analysis") as progress:
 ### Exception Hierarchy
 
 ```python
-from osintbuddy import (
+from omoika import (
     PluginError,          # Base exception
     PluginWarn,           # Non-fatal warning
     PluginNotFoundError,
@@ -563,7 +563,7 @@ from osintbuddy import (
 ### ErrorCode
 
 ```python
-from osintbuddy import ErrorCode
+from omoika import ErrorCode
 
 ErrorCode.PLUGIN_NOT_FOUND
 ErrorCode.PLUGIN_LOAD_ERROR
@@ -599,7 +599,7 @@ except PluginError as e:
 Ensure packages are installed.
 
 ```python
-from osintbuddy import ensure_deps
+from omoika import ensure_deps
 
 ensure_deps(("requests>=2.0", "beautifulsoup4"))
 ```
@@ -609,7 +609,7 @@ ensure_deps(("requests>=2.0", "beautifulsoup4"))
 Check if packages are available.
 
 ```python
-from osintbuddy import check_deps
+from omoika import check_deps
 
 missing = check_deps(["requests", "httpx"])
 ```
@@ -623,7 +623,7 @@ missing = check_deps(["requests", "httpx"])
 Compile JSON to Python source.
 
 ```python
-from osintbuddy import compile_entity
+from omoika import compile_entity
 
 source = compile_entity(json_dict, version="1.0.0")
 # or
@@ -635,7 +635,7 @@ source = compile_entity(json_string, version="1.0.0")
 Compile JSON file to Python file.
 
 ```python
-from osintbuddy import compile_file
+from omoika import compile_file
 
 compile_file("entity.json", "entity.py", version="1.0.0")
 ```
@@ -645,7 +645,7 @@ compile_file("entity.json", "entity.py", version="1.0.0")
 Batch compile directory.
 
 ```python
-from osintbuddy import compile_directory
+from omoika import compile_directory
 
 compile_directory("json/", "entities/", version="1.0.0")
 ```
@@ -659,7 +659,7 @@ compile_directory("json/", "entities/", version="1.0.0")
 Load plugins from filesystem.
 
 ```python
-from osintbuddy import load_plugins_fs
+from omoika import load_plugins_fs
 
 load_plugins_fs(
     plugins_path: str,     # Path to plugins directory
@@ -678,10 +678,10 @@ The function:
 
 ## Utilities
 
-Located in `osintbuddy.utils`:
+Located in `omoika.utils`:
 
 ```python
-from osintbuddy.utils import (
+from omoika.utils import (
     to_snake_case,        # "Hello World" -> "hello_world"
     to_camel_case,        # "hello_world" -> "helloWorld"
     slugify,              # "Hello World!" -> "hello-world"
@@ -698,7 +698,7 @@ from osintbuddy.utils import (
 ## Version
 
 ```python
-from osintbuddy import __version__
+from omoika import __version__
 
 print(__version__)
 ```

@@ -55,7 +55,7 @@ datas = (
 )
 
 a = Analysis(
-    [str(SRC / "osintbuddy" / "ipc_worker.py")],
+    [str(SRC / "omoika" / "ipc_worker.py")],
     pathex=[str(SRC)],
     binaries=[],
     datas=datas,

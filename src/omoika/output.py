@@ -1,4 +1,4 @@
-"""Structured CLI output for OSINTBuddy.
+"""Structured CLI output for Omoika.
 
 This module provides utilities for emitting structured output from the CLI,
 making it easier for the Electron app to parse results reliably.

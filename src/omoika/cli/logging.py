@@ -1,4 +1,4 @@
-"""Logging configuration for OSINTBuddy CLI."""
+"""Logging configuration for Omoika CLI."""
 from __future__ import annotations
 
 import logging
@@ -8,11 +8,11 @@ from typing import Any
 from rich.logging import RichHandler
 from rich.console import Console
 
-from osintbuddy.cli.console import err_console
+from omoika.cli.console import err_console
 
 
 class OSIBLogHandler(RichHandler):
-    """Custom Rich log handler with OSINTBuddy styling."""
+    """Custom Rich log handler with Omoika styling."""
 
     def __init__(
         self,
@@ -68,10 +68,10 @@ def setup_logging(
         handlers=[handler],
     )
 
-    return logging.getLogger("osintbuddy")
+    return logging.getLogger("omoika")
 
 
-def get_logger(name: str = "osintbuddy") -> logging.Logger:
+def get_logger(name: str = "omoika") -> logging.Logger:
     """Get a logger instance.
 
     Args:
@@ -86,7 +86,7 @@ def get_logger(name: str = "osintbuddy") -> logging.Logger:
 class LogCapture:
     """Context manager to capture log output."""
 
-    def __init__(self, logger_name: str = "osintbuddy"):
+    def __init__(self, logger_name: str = "omoika"):
         self.logger_name = logger_name
         self.records: list[logging.LogRecord] = []
         self._handler: logging.Handler | None = None

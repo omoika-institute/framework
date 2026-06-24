@@ -26,8 +26,8 @@ Field types provide semantic meaning to entity fields, enabling type inference a
 Field types allow transforms to work with any entity that contains a matching field type, rather than being tied to specific entity definitions.
 
 ```python
-from osintbuddy.types import FieldType
-from osintbuddy.elements import TextInput
+from omoika.types import FieldType
+from omoika.elements import TextInput
 
 # Define an entity with typed fields
 elements = [
@@ -139,9 +139,9 @@ async def validate_email(entity):
 ### In Entity Definitions
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import TextInput
-from osintbuddy.types import FieldType
+from omoika import Plugin
+from omoika.elements import TextInput
+from omoika.types import FieldType
 
 
 class NetworkAsset(Plugin):
@@ -192,7 +192,7 @@ async def geoip_lookup(entity):
 Some types are compatible with each other:
 
 ```python
-from osintbuddy.types import are_types_compatible, TYPE_COMPATIBILITY
+from omoika.types import are_types_compatible, TYPE_COMPATIBILITY
 
 # IP_ADDRESS is compatible with IPV4 and IPV6
 are_types_compatible(FieldType.IP_ADDRESS, FieldType.IPV4)  # True
@@ -214,7 +214,7 @@ Compatibility rules:
 The framework can automatically detect field types from values:
 
 ```python
-from osintbuddy.types import get_field_type
+from omoika.types import get_field_type
 
 # Automatic detection
 get_field_type("user@example.com")        # FieldType.EMAIL
@@ -246,7 +246,7 @@ Detection patterns:
 For explicit type annotation:
 
 ```python
-from osintbuddy.types import TypedValue, FieldType
+from omoika.types import TypedValue, FieldType
 
 # Wrap a value with its type
 typed_email = TypedValue(
@@ -263,7 +263,7 @@ print(typed_email.field_type)  # FieldType.EMAIL
 Retrieve the field type mapping for a plugin:
 
 ```python
-from osintbuddy import Registry
+from omoika import Registry
 
 EmailEntity = Registry.get_entity("email")
 field_types = EmailEntity.get_field_types()
@@ -274,9 +274,9 @@ field_types = EmailEntity.get_field_types()
 ## Complete Example
 
 ```python
-from osintbuddy import Plugin, transform, Entity, Edge
-from osintbuddy.elements import TextInput, CopyText
-from osintbuddy.types import FieldType, get_field_type
+from omoika import Plugin, transform, Entity, Edge
+from omoika.elements import TextInput, CopyText
+from omoika.types import FieldType, get_field_type
 
 
 class UniversalEntity(Plugin):

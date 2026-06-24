@@ -8,10 +8,10 @@ from pathlib import Path
 import httpx
 import pytest
 
-from osintbuddy import Registry, TransformPayload, load_plugins_fs
-from osintbuddy.ipc_worker import ObWorker
-from osintbuddy.output import set_progress_callback
-from osintbuddy.results import normalize_result
+from omoika import Registry, TransformPayload, load_plugins_fs
+from omoika.ipc_worker import ObWorker
+from omoika.output import set_progress_callback
+from omoika.results import normalize_result
 
 
 PLUGIN_ROOT = Path(__file__).resolve().parent.parent / "paid_plugins"

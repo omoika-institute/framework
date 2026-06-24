@@ -473,7 +473,7 @@ wheels = [
 ]
 
 [[package]]
-name = "osintbuddy"
+name = "omoika"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },

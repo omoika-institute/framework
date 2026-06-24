@@ -1,9 +1,9 @@
-"""OSINTBuddy CLI package.
+"""Omoika CLI package.
 
 Provides a modern, animated CLI experience using Rich.
 """
-from osintbuddy.cli.console import console, err_console
-from osintbuddy.cli.display import (
+from omoika.cli.console import console, err_console
+from omoika.cli.display import (
     print_banner,
     print_error,
     print_success,
@@ -11,8 +11,8 @@ from osintbuddy.cli.display import (
     print_info,
     print_debug,
 )
-from osintbuddy.cli.progress import StepRunner, Step
-from osintbuddy.cli.logging import setup_logging, get_logger
+from omoika.cli.progress import StepRunner, Step
+from omoika.cli.logging import setup_logging, get_logger
 
 __all__ = [
     "console",

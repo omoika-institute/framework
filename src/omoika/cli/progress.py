@@ -1,4 +1,4 @@
-"""Progress display utilities for OSINTBuddy CLI."""
+"""Progress display utilities for Omoika CLI."""
 from __future__ import annotations
 
 import time
@@ -10,7 +10,7 @@ from rich.live import Live
 from rich.text import Text
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 
-from osintbuddy.cli.console import console
+from omoika.cli.console import console
 
 
 SPINNER_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]

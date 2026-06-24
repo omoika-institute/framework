@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from osintbuddy.compiler import compile_entity
-from osintbuddy.elements import Markdown
+from omoika.compiler import compile_entity
+from omoika.elements import Markdown
 
 
 def test_markdown_element_serializes_for_graph_renderer() -> None:
@@ -25,5 +25,5 @@ def test_compiler_accepts_markdown_json_type() -> None:
         }
     )
 
-    assert "from osintbuddy.elements import Markdown" in code
+    assert "from omoika.elements import Markdown" in code
     assert 'Markdown(label="Notes", value="# Findings")' in code

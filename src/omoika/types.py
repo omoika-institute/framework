@@ -1,4 +1,4 @@
-"""Standard field types for OSINTBuddy entities.
+"""Standard field types for Omoika entities.
 
 Field types enable type-based transform matching, allowing transforms to
 declare what types of data they accept and produce rather than being

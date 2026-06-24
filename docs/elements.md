@@ -11,10 +11,10 @@ All elements share common attributes:
 | `label`   | `str` | Required | Element identifier and display label      |
 | `width`   | `int` | `12`     | Grid width (1-12, where 12 is full width) |
 
-Import elements from `osintbuddy.elements`:
+Import elements from `omoika.elements`:
 
 ```python
-from osintbuddy.elements import TextInput, CopyText, Title, Image
+from omoika.elements import TextInput, CopyText, Title, Image
 ```
 
 ## Layout
@@ -58,8 +58,8 @@ Input elements capture user data and support the `field_type` attribute for sema
 A single-line text field.
 
 ```python
-from osintbuddy.elements import TextInput
-from osintbuddy.types import FieldType
+from omoika.elements import TextInput
+from omoika.types import FieldType
 
 TextInput(
     label="Email",
@@ -83,7 +83,7 @@ TextInput(
 A multi-line text area for longer content.
 
 ```python
-from osintbuddy.elements import TextAreaInput
+from omoika.elements import TextAreaInput
 
 TextAreaInput(
     label="Notes",
@@ -105,7 +105,7 @@ TextAreaInput(
 A dropdown select with predefined options.
 
 ```python
-from osintbuddy.elements import DropdownInput
+from omoika.elements import DropdownInput
 
 DropdownInput(
     label="Status",
@@ -131,7 +131,7 @@ DropdownInput(
 A file upload field.
 
 ```python
-from osintbuddy.elements import UploadFileInput
+from omoika.elements import UploadFileInput
 
 UploadFileInput(
     label="Document",
@@ -155,7 +155,7 @@ Display elements render read-only content in various formats.
 A prominent title/heading display.
 
 ```python
-from osintbuddy.elements import Title
+from omoika.elements import Title
 
 Title(
     label="Organization Name",
@@ -175,7 +175,7 @@ Title(
 A simple text display with optional icon.
 
 ```python
-from osintbuddy.elements import Text
+from omoika.elements import Text
 
 Text(
     label="Description",
@@ -197,7 +197,7 @@ Text(
 An editable Markdown note. Entities with a Markdown element render as Markdown note nodes in the graph.
 
 ```python
-from osintbuddy.elements import Markdown
+from omoika.elements import Markdown
 
 Markdown(
     label="Notes",
@@ -217,7 +217,7 @@ Markdown(
 Text with a copy-to-clipboard button.
 
 ```python
-from osintbuddy.elements import CopyText
+from omoika.elements import CopyText
 
 CopyText(
     label="API Key",
@@ -237,7 +237,7 @@ CopyText(
 Monospace code display with copy functionality.
 
 ```python
-from osintbuddy.elements import CopyCode
+from omoika.elements import CopyCode
 
 CopyCode(
     label="Command",
@@ -257,7 +257,7 @@ CopyCode(
 Formatted JSON display with syntax highlighting.
 
 ```python
-from osintbuddy.elements import Json
+from omoika.elements import Json
 
 Json(
     label="Response Data",
@@ -275,7 +275,7 @@ Json(
 An image display element.
 
 ```python
-from osintbuddy.elements import Image
+from omoika.elements import Image
 
 Image(
     label="Screenshot",
@@ -293,7 +293,7 @@ Image(
 A video player element.
 
 ```python
-from osintbuddy.elements import Video
+from omoika.elements import Video
 
 Video(
     label="Recording",
@@ -311,7 +311,7 @@ Video(
 A PDF viewer element.
 
 ```python
-from osintbuddy.elements import Pdf
+from omoika.elements import Pdf
 
 Pdf(
     label="Document",
@@ -329,7 +329,7 @@ Pdf(
 A list/array display.
 
 ```python
-from osintbuddy.elements import List
+from omoika.elements import List
 
 List(
     label="Tags",
@@ -347,7 +347,7 @@ List(
 A tabular data display.
 
 ```python
-from osintbuddy.elements import Table
+from omoika.elements import Table
 
 Table(
     label="DNS Records",
@@ -365,7 +365,7 @@ Table(
 A spacer element for layout purposes.
 
 ```python
-from osintbuddy.elements import Empty
+from omoika.elements import Empty
 
 Empty(
     width=3,  # Creates empty space
@@ -383,8 +383,8 @@ Empty(
 Add semantic meaning to input elements using `field_type`:
 
 ```python
-from osintbuddy.elements import TextInput
-from osintbuddy.types import FieldType
+from omoika.elements import TextInput
+from omoika.types import FieldType
 
 elements = [
     TextInput(label="Email", field_type=FieldType.EMAIL),
@@ -424,8 +424,8 @@ data = element.to_dict()
 A comprehensive entity using various elements:
 
 ```python
-from osintbuddy import Plugin
-from osintbuddy.elements import (
+from omoika import Plugin
+from omoika.elements import (
     TextInput,
     TextAreaInput,
     DropdownInput,
@@ -439,7 +439,7 @@ from osintbuddy.elements import (
     Table,
     Empty,
 )
-from osintbuddy.types import FieldType
+from omoika.types import FieldType
 
 
 class InvestigationReport(Plugin):

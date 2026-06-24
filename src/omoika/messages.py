@@ -1,10 +1,10 @@
-"""UI messages for OSINTBuddy transforms.
+"""UI messages for Omoika transforms.
 
 This module provides a system for transforms to send feedback messages
 to the UI, similar to Maltego's addUIMessage functionality.
 
 Example usage:
-    from osintbuddy.messages import UIMessage, MessageType
+    from omoika.messages import UIMessage, MessageType
 
     @transform(target="website@1.0.0", label="Scan")
     async def scan(entity):

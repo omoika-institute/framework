@@ -1,4 +1,4 @@
-"""Runtime helpers for bundled OSINTBuddy workers."""
+"""Runtime helpers for bundled Omoika workers."""
 from __future__ import annotations
 
 import importlib
@@ -22,13 +22,13 @@ def is_frozen_runtime() -> bool:
 
 @lru_cache(maxsize=1)
 def get_runtime_home() -> Path:
-    raw_home = os.environ.get("OSINTBUDDY_RUNTIME_HOME", "").strip()
+    raw_home = os.environ.get("OMOIKA_RUNTIME_HOME", "").strip()
     if raw_home:
         runtime_home = Path(raw_home).expanduser()
     elif is_frozen_runtime():
-        runtime_home = Path.home() / ".osintbuddy-runtime"
+        runtime_home = Path.home() / ".omoika-runtime"
     else:
-        runtime_home = Path.cwd() / ".osintbuddy-runtime"
+        runtime_home = Path.cwd() / ".omoika-runtime"
 
     runtime_home.mkdir(parents=True, exist_ok=True)
     return runtime_home
@@ -45,7 +45,7 @@ def ensure_runtime_ready() -> Path:
     runtime_home = get_runtime_home()
     site_packages_dir = get_dynamic_site_packages_dir()
 
-    os.environ.setdefault("OSINTBUDDY_RUNTIME_HOME", str(runtime_home))
+    os.environ.setdefault("OMOIKA_RUNTIME_HOME", str(runtime_home))
     os.environ.setdefault("PIP_CACHE_DIR", str(runtime_home / "pip-cache"))
     os.environ.setdefault(
         "PLAYWRIGHT_BROWSERS_PATH",
@@ -142,7 +142,7 @@ def ensure_playwright_browsers(package_names: Sequence[str]) -> None:
     if marker.exists():
         return
 
-    browser_name = os.environ.get("OSINTBUDDY_PLAYWRIGHT_BROWSER", "chromium").strip() or "chromium"
+    browser_name = os.environ.get("OMOIKA_PLAYWRIGHT_BROWSER", "chromium").strip() or "chromium"
 
     installer = None
     installer_name = None

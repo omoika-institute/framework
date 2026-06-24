@@ -1,4 +1,4 @@
-"""Dependency management for OSINTBuddy transforms.
+"""Dependency management for Omoika transforms.
 
 This module provides utilities for declaring and installing transform
 dependencies at runtime, enabling transforms to use third-party packages
@@ -22,7 +22,7 @@ import importlib
 from functools import lru_cache
 from typing import Sequence
 
-from osintbuddy.runtime import (
+from omoika.runtime import (
     ensure_playwright_browsers,
     ensure_runtime_ready,
     install_python_packages,
